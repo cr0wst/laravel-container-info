@@ -1,0 +1,24 @@
+{
+  "name": "smcrow/binding-utilities",
+  "description": "Artisan commands for working with bindings and the IoC container.",
+  "minimum-stability": "stable",
+  "keywords": ["laravel", "artisan"],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Steve Crow",
+      "email": "steve@smcrow.net"
+    }
+  ],
+  "require": {
+    "php": ">=5.4.0",
+    "illuminate/console": "~5.0",
+    "illuminate/support": "~5.0",
+    "illuminate/container": "~5.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Smcrow\\BindingUtilities\\": "src/"
+    }
+  }
+}
