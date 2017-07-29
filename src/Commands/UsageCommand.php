@@ -7,21 +7,21 @@ use Illuminate\Container\Container;
 use ReflectionFunction;
 use Smcrow\BindingUtilities\Services\BindingService;
 
-class ListCommand extends Command
+class UsageCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'binding:list';
+    protected $signature = 'binding:usage';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Show the bound providers on the IoC container.';
+    protected $description = 'Searches the source directory for references to the abstracts that are bound.';
 
     /**
      * @var BindingService $bindingService
@@ -31,6 +31,7 @@ class ListCommand extends Command
     /**
      * Create a new command instance.
      *
+     * @return void
      */
     public function __construct(BindingService $bindingService)
     {
@@ -46,9 +47,6 @@ class ListCommand extends Command
      */
     public function handle(Container $container)
     {
-       $foundBindings = $this->bindingService->getBindingList();
-
-        $headers = ['Abstract', 'Concrete'];
-        $this->table($headers, $foundBindings);
+        $this->line($this->bindingService->getUsageList());
     }
 }

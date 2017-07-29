@@ -4,6 +4,7 @@ namespace Smcrow\BindingUtilities;
 
 use Illuminate\Support\ServiceProvider;
 use Smcrow\BindingUtilities\Commands\ListCommand;
+use Smcrow\BindingUtilities\Commands\UsageCommand;
 
 class BindingUtilitiesServiceProvider extends ServiceProvider
 {
@@ -29,7 +30,11 @@ class BindingUtilitiesServiceProvider extends ServiceProvider
            return $app[ListCommand::class];
         });
 
-        $this->commands('command.smcrow.list');
+        $this->app->singleton('command.smcrow.usage', function($app) {
+            return $app[UsageCommand::class];
+        });
+
+        $this->commands('command.smcrow.list', 'command.smcrow.usage');
     }
 
 }
