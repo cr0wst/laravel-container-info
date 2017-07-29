@@ -29,7 +29,7 @@ class BindingUtilitiesServiceProvider extends ServiceProvider
            return $app[ListCommand::class];
         });
 
-        $this->commands('commands.smcrow.list');
+        $this->commands('command.smcrow.list');
     }
 
 }
