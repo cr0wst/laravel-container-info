@@ -13,8 +13,11 @@ You'll need to register the command in order for it to be usable.  This will add
 ```php
 public function register()
 {
-    if ($this->app->environment() == 'local') {
+    if ($this->app->environment() === 'local') {
         $this->app->register(BindingUtilitiesServiceProvider::class);
     }
 }
 ```
+
+# Feedback and Contributions
+Please feel free to offer suggestions by submitting an Issue.  Alternatively, submit a pull request with any features you wish to add.  This is a work-in-progress, and I would welcome any and all feedback.
