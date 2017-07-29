@@ -9,7 +9,7 @@ composer require smcrow/binding-utilities
 ```
 
 ## Register the Command
-You'll need to register the command in order for it to be usable.  This will add the provider for the local environment:
+You'll need to register the command in order for it to be usable.  Modify the `register` method of `AppServiceProvider`  This will add the provider for the local environment:
 ```php
 public function register()
 {
