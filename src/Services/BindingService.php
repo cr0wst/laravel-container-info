@@ -74,7 +74,7 @@ class BindingService
                 $content = file_get_contents($file->getPathname());
                 // search file for each abstract
                 foreach ($abstracts as $abstract) {
-                    if (strpos($content, $abstract)) {
+                    if (strpos($content, $abstract) !== false) {
                         // If we found a reference we will add the file to the array list with the abstract key
                         if (!array_key_exists($abstract, $bindingsAndLocation)) {
                             // Initialize the array with the abstract key if it doesn't exist.
