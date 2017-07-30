@@ -1,6 +1,10 @@
 # Artisan Binding-Utilities
 This is a suite of custom commands for Artisan that assists working with IoC bindings.  The following commands are added:
 * `binding:list` - Lists the registered bindings by showing the abstract (interface) and concrete class that will be injected.
+    * `--include-illuminate` - Indicates that Illuminate classes should be included.  They are not included by default.
+* `binding:usage` - Lists the registered bindings and which files they are referenced in.
+    * `--include-illuminate` - Indicates that Illuminate classes should be included.  They are not included by default.
+    * `--sort` - Indicates that the information should be sorted.
 
 # Usage
 ## Install Through Composer

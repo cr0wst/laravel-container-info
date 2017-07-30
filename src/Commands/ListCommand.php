@@ -5,6 +5,7 @@ namespace Smcrow\BindingUtilities\Commands;
 use Illuminate\Console\Command;
 use Illuminate\Container\Container;
 use ReflectionFunction;
+use Smcrow\BindingUtilities\Services\BindingService;
 
 class ListCommand extends Command
 {
@@ -13,7 +14,7 @@ class ListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'binding:list';
+    protected $signature = 'binding:list {--include-illuminate}';
 
     /**
      * The console command description.
@@ -23,13 +24,18 @@ class ListCommand extends Command
     protected $description = 'Show the bound providers on the IoC container.';
 
     /**
+     * @var BindingService $bindingService
+     */
+    private $bindingService;
+
+    /**
      * Create a new command instance.
      *
-     * @return void
      */
-    public function __construct()
+    public function __construct(BindingService $bindingService)
     {
         parent::__construct();
+        $this->bindingService = $bindingService;
     }
 
     /**
@@ -40,21 +46,7 @@ class ListCommand extends Command
      */
     public function handle(Container $container)
     {
-        // Get the bindings off the injected container.
-        $bindings = $container->getBindings();
-
-        $foundBindings = [];
-
-        // Use reflection on each of the binding closures to pull the static $concrete and $abstract variables.
-        foreach($bindings as $binding) {
-            $reflection = new ReflectionFunction($binding["concrete"]);
-
-            $staticVariables = $reflection->getStaticVariables();
-
-            if (array_has($staticVariables, ['concrete', 'abstract'])) {
-                array_push($foundBindings, array_intersect_key($staticVariables, array_flip(['concrete', 'abstract'])));
-            }
-        }
+        $foundBindings = $this->bindingService->getBindingList($this->option('include-illuminate'));
 
         $headers = ['Abstract', 'Concrete'];
         $this->table($headers, $foundBindings);
