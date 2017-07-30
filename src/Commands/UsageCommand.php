@@ -14,7 +14,7 @@ class UsageCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'binding:usage';
+    protected $signature = 'binding:usage {--include-illuminate} {--sort}';
 
     /**
      * The console command description.
@@ -31,7 +31,7 @@ class UsageCommand extends Command
     /**
      * Create a new command instance.
      *
-     * @return void
+     * @param BindingService $bindingService
      */
     public function __construct(BindingService $bindingService)
     {
@@ -47,6 +47,21 @@ class UsageCommand extends Command
      */
     public function handle(Container $container)
     {
-        $this->line($this->bindingService->getUsageList());
+        $usageList = $this->bindingService->getUsageList($this->option('include-illuminate'));
+        if ($this->option('sort')) {
+            ksort($usageList);
+        }
+
+        // There might be a better way to do this using array_map but the table method is pretty picky about
+        // the array of arrays you feed it.
+        $outputArray = [];
+        foreach($usageList as $key => $value) {
+            array_push($outputArray, ['abstract' => $key, 'locations' => implode("\n", $value)]);
+        }
+
+        // Build the formatted usage list.
+        $headers = ['Abstract', 'Locations'];
+        $this->table($headers, $outputArray);
+
     }
 }

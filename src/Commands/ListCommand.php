@@ -14,7 +14,7 @@ class ListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'binding:list';
+    protected $signature = 'binding:list {--include-illuminate}';
 
     /**
      * The console command description.
@@ -46,7 +46,7 @@ class ListCommand extends Command
      */
     public function handle(Container $container)
     {
-       $foundBindings = $this->bindingService->getBindingList();
+        $foundBindings = $this->bindingService->getBindingList($this->option('include-illuminate'));
 
         $headers = ['Abstract', 'Concrete'];
         $this->table($headers, $foundBindings);

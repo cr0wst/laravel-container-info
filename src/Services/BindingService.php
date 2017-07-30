@@ -3,6 +3,8 @@
 namespace Smcrow\BindingUtilities\Services;
 
 use Illuminate\Container\Container;
+use RecursiveDirectoryIterator;
+use RecursiveIteratorIterator;
 use ReflectionFunction;
 
 /**
@@ -25,9 +27,10 @@ class BindingService
     /**
      * Get the list of bindings from the Container.
      *
+     * @param bool $includeIlluminate Whether or not to include the Illuminate bindings.
      * @return array of arrays containing the 'concrete' and 'abstract' classes for each bound pair.
      */
-    public function getBindingList()
+    public function getBindingList($includeIlluminate = true)
     {
         // Get the bindings off the injected container.
         $bindings = $this->container->getBindings();
@@ -40,7 +43,10 @@ class BindingService
 
             $staticVariables = $reflection->getStaticVariables();
 
-            if (array_has($staticVariables, ['concrete', 'abstract'])) {
+            // Check to make sure the Closure has a concrete and abstract.  Also only include Illuminate bindings
+            // if the boolean is true.
+            if (array_has($staticVariables, ['concrete', 'abstract'])
+                && ($includeIlluminate || strpos($staticVariables['abstract'], 'Illuminate\\') === false)) {
                 array_push($foundBindings, array_intersect_key($staticVariables, array_flip(['concrete', 'abstract'])));
             }
         }
@@ -48,12 +54,39 @@ class BindingService
         return $foundBindings;
     }
 
-    public function getUsageList()
+    /**
+     * Get a list of the bindings and the files in which they are referenced.
+     * @param bool $includeIlluminate Whether or not to include the Illuminate bindings.
+     * @return array of arrays containing the 'abstract' and an array of files which reference it.
+     */
+    public function getUsageList($includeIlluminate = true)
     {
+        // First get an array of all of the abstracts
+        $abstracts = array_column($this->getBindingList($includeIlluminate), 'abstract');
+
+        // Generate an array of bindings and their location.
         // It's preferable to search each file for each binding rather than for each binding to search each file.
         // This way we are only searching through the file system once.
-        $abstracts = array_column($this->getBindingList(), 'abstract');
-        return $abstracts;
-    }
+        $bindingsAndLocation = [];
+        $directory = new RecursiveDirectoryIterator(base_path());
+        foreach (new RecursiveIteratorIterator($directory) as $file) {
+            if ($file->getExtension() === 'php') {
+                $content = file_get_contents($file->getPathname());
+                // search file for each abstract
+                foreach ($abstracts as $abstract) {
+                    if (strpos($content, $abstract)) {
+                        // If we found a reference we will add the file to the array list with the abstract key
+                        if (!array_key_exists($abstract, $bindingsAndLocation)) {
+                            // Initialize the array with the abstract key if it doesn't exist.
+                            $bindingsAndLocation[$abstract] = [];
+                        }
 
+                        array_push($bindingsAndLocation[$abstract], str_replace(base_path().'\\', '', $file->getPathName()));
+                    }
+                }
+            }
+        }
+
+        return $bindingsAndLocation;
+    }
 }
