@@ -1,4 +1,7 @@
 # Artisan Binding-Utilities
+
+[![Latest Stable Version](https://poser.pugx.org/smcrow/binding-utilities/v/stable)](https://packagist.org/packages/smcrow/binding-utilities) [![Latest Unstable Version](https://poser.pugx.org/smcrow/binding-utilities/v/unstable)](https://packagist.org/packages/smcrow/binding-utilities) [![Total Downloads](https://poser.pugx.org/smcrow/binding-utilities/downloads)](https://packagist.org/packages/smcrow/binding-utilities) 
+
 This is a suite of custom commands for Artisan that assists working with IoC bindings.  The following commands are added:
 * `binding:list` - Lists the registered bindings by showing the abstract (interface) and concrete class that will be injected.
     * `--include-illuminate` - Indicates that Illuminate classes should be included.  They are not included by default.
