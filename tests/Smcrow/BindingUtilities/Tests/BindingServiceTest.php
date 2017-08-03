@@ -2,11 +2,10 @@
 
 namespace Smcrow\BindingUtilities\Tests;
 
-use Smcrow\BindingUtilities\Services\BindingService;
-use Closure;
 use Illuminate\Container\Container;
 use Mockery;
 use PHPUnit\Framework\TestCase;
+use Smcrow\BindingUtilities\Services\BindingService;
 
 class BindingServiceTest extends TestCase
 {
