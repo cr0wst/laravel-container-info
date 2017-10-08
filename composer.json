@@ -24,5 +24,12 @@
   "require-dev": {
     "phpunit/phpunit": "^6.2",
     "mockery/mockery": "^0.9.9"
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Smcrow\\BindingUtilities\\BindingUtilitiesServiceProvider"
+      ]
+    }
   }
 }
