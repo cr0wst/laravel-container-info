@@ -12,10 +12,15 @@ This is a suite of custom commands for Artisan that assists working with IoC bin
 # Usage
 ## Install Through Composer
 ```
-composer require smcrow/binding-utilities
+composer require smcrow/binding-utilities --dev
 ```
 
 ## Register the Command
+
+### Laravel 5.5
+Laravel 5.5 allows for the auto-discovery of service providers.  The BindingUtilitiesServiceProvider will automatically be discovered as long as it is required as a dev dependency.
+
+### Pre Laravel 5.5
 You'll need to register the command in order for it to be usable.  Modify the `register` method of `AppServiceProvider`  This will add the provider for the local environment:
 ```php
 public function register()
