@@ -18,7 +18,7 @@ composer require smcrow/binding-utilities --dev
 ## Register the Command
 
 ### Laravel 5.5
-Laravel 5.5 allows for the auto-discovery of service providers.  The BindingUtilitiesServiceProvider will automatically be discovered as long as it is required as a dev dependency.
+Laravel 5.5 allows for the auto-discovery of service providers.  The BindingUtilitiesServiceProvider will automatically be discovered.
 
 ### Pre Laravel 5.5
 You'll need to register the command in order for it to be usable.  Modify the `register` method of `AppServiceProvider`  This will add the provider for the local environment:
