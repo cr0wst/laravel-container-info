@@ -60,5 +60,53 @@ Here's sample output from the `binding:list` command from my `LeaseTracker` appl
 +-----------------------------------------------------------------+--------------------------------------------------------------+
 ```
 
+```
+php artisan provider:list
+```
+Here's sample output from a dummy application:
+```
++-----------------------------------------------------------------------------+
+| Providers                                                                   |
++-----------------------------------------------------------------------------+
+| Illuminate\Events\EventServiceProvider                                      |
+| Illuminate\Log\LogServiceProvider                                           |
+| Illuminate\Routing\RoutingServiceProvider                                   |
+| Illuminate\Auth\AuthServiceProvider                                         |
+| Illuminate\Cookie\CookieServiceProvider                                     |
+| Illuminate\Database\DatabaseServiceProvider                                 |
+| Illuminate\Encryption\EncryptionServiceProvider                             |
+| Illuminate\Filesystem\FilesystemServiceProvider                             |
+| Illuminate\Foundation\Providers\FormRequestServiceProvider                  |
+| Illuminate\Foundation\Providers\FoundationServiceProvider                   |
+| Illuminate\Notifications\NotificationServiceProvider                        |
+| Illuminate\Pagination\PaginationServiceProvider                             |
+| Illuminate\Session\SessionServiceProvider                                   |
+| Illuminate\View\ViewServiceProvider                                         |
+| Fideloper\Proxy\TrustedProxyServiceProvider                                 |
+| Smcrow\ContainerInformation\BindingInformation\BindingInformationProvider   |
+| Smcrow\ContainerInformation\ProviderInformation\ProviderInformationProvider |
+| Smcrow\ContainerInformation\ContainerInformationProvider                    |
+| App\Providers\AppServiceProvider                                            |
+| App\Providers\AuthServiceProvider                                           |
+| App\Providers\EventServiceProvider                                          |
+| App\Providers\RouteServiceProvider                                          |
+| Illuminate\Cache\CacheServiceProvider                                       |
+| Illuminate\Broadcasting\BroadcastServiceProvider                            |
+| Illuminate\Bus\BusServiceProvider                                           |
+| Illuminate\Foundation\Providers\ArtisanServiceProvider                      |
+| Illuminate\Database\MigrationServiceProvider                                |
+| Illuminate\Foundation\Providers\ComposerServiceProvider                     |
+| Illuminate\Foundation\Providers\ConsoleSupportServiceProvider               |
+| Illuminate\Hashing\HashServiceProvider                                      |
+| Illuminate\Mail\MailServiceProvider                                         |
+| Illuminate\Pipeline\PipelineServiceProvider                                 |
+| Illuminate\Queue\QueueServiceProvider                                       |
+| Illuminate\Redis\RedisServiceProvider                                       |
+| Illuminate\Auth\Passwords\PasswordResetServiceProvider                      |
+| Illuminate\Translation\TranslationServiceProvider                           |
+| Illuminate\Validation\ValidationServiceProvider                             |
+| Laravel\Tinker\TinkerServiceProvider                                        |
++-----------------------------------------------------------------------------+
+```
 # Feedback and Contributions
 Please feel free to offer suggestions by submitting an Issue.  Alternatively, submit a pull request with any features you wish to add.  This is a work-in-progress, and I would welcome any and all feedback.
