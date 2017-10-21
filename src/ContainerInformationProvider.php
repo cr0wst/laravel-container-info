@@ -26,6 +26,7 @@ class ContainerInformationProvider extends ServiceProvider
     public function register()
     {
         $this->app->register(BindingInformationProvider::class);
+        $this->app->register(ProviderInformationProvider::class);
     }
 
 }
