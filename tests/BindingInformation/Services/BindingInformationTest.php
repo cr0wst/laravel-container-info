@@ -1,6 +1,6 @@
 <?php
 
-namespace Smcrow\BindingUtilities\Tests;
+namespace Smcrow\ContainerInformation\BindingInformation\Tests;
 
 use Illuminate\Container\Container;
 use Mockery;
