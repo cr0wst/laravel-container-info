@@ -3,9 +3,9 @@
 namespace Smcrow\ContainerInformation;
 
 use Illuminate\Support\ServiceProvider;
-use Smcrow\ContainerInformation\BindingInformation\BindingInformationServiceProvider;
+use Smcrow\ContainerInformation\BindingInformation\BindingInformationProvider;
 
-class ContainerInformationServiceProvider extends ServiceProvider
+class ContainerInformationProvider extends ServiceProvider
 {
 
     /**
@@ -25,7 +25,7 @@ class ContainerInformationServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(BindingInformationServiceProvider::class);
+        $this->app->register(BindingInformationProvider::class);
     }
 
 }

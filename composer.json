@@ -28,7 +28,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Smcrow\\ContainerInformation\\ContainerInformationServiceProvider"
+        "Smcrow\\ContainerInformation\\ContainerInformationProvider"
       ]
     }
   }

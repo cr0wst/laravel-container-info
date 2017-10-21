@@ -19,7 +19,7 @@ composer require smcrow/laravel-container-info --dev
 ## Register the Command
 
 ### Laravel 5.5
-Laravel 5.5 allows for the auto-discovery of service providers.  The ContainerInformationServiceProvider will automatically be discovered.
+Laravel 5.5 allows for the auto-discovery of service providers.  The ContainerInformationProvider will automatically be discovered.
 
 ### Pre Laravel 5.5
 You'll need to register the command in order for it to be usable.  Modify the `register` method of `AppServiceProvider`  This will add the provider for the local environment:
@@ -27,7 +27,7 @@ You'll need to register the command in order for it to be usable.  Modify the `r
 public function register()
 {
     if ($this->app->environment() === 'local') {
-        $this->app->register(ContainerInformationServiceProvider::class);
+        $this->app->register(ContainerInformationProvider::class);
     }
 }
 ```
