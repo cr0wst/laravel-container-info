@@ -28,5 +28,4 @@ class ContainerInformationProvider extends ServiceProvider
         $this->app->register(BindingInformationProvider::class);
         $this->app->register(ProviderInformationProvider::class);
     }
-
 }

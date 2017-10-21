@@ -25,11 +25,10 @@ class ProviderInformationProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('command.smcrow.provider.list', function($app) {
-           return $app[ListCommand::class];
+        $this->app->singleton('command.smcrow.provider.list', function ($app) {
+            return $app[ListCommand::class];
         });
 
         $this->commands('command.smcrow.provider.list');
     }
-
 }

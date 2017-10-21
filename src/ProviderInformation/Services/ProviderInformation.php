@@ -35,6 +35,5 @@ class ProviderInformation
         $providers->setAccessible(true);
 
         return $providers->getValue($this->application);
-        
     }
 }

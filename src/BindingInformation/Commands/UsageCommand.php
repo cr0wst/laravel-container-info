@@ -54,13 +54,12 @@ class UsageCommand extends Command
         // There might be a better way to do this using array_map but the table method is pretty picky about
         // the array of arrays you feed it.
         $outputArray = [];
-        foreach($usageList as $key => $value) {
+        foreach ($usageList as $key => $value) {
             array_push($outputArray, ['abstract' => $key, 'locations' => implode("\n", $value)]);
         }
 
         // Build the formatted usage list.
         $headers = ['Abstract', 'Locations'];
         $this->table($headers, $outputArray);
-
     }
 }

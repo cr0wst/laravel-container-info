@@ -38,7 +38,7 @@ class BindingInformation
         $foundBindings = [];
 
         // Use reflection on each of the binding closures to pull the static $concrete and $abstract variables.
-        foreach($bindings as $binding) {
+        foreach ($bindings as $binding) {
             $reflection = new ReflectionFunction($binding["concrete"]);
 
             $staticVariables = $reflection->getStaticVariables();
@@ -81,7 +81,10 @@ class BindingInformation
                             $bindingsAndLocation[$abstract] = [];
                         }
 
-                        array_push($bindingsAndLocation[$abstract], str_replace(base_path().'\\', '', $file->getPathName()));
+                        array_push(
+                            $bindingsAndLocation[$abstract],
+                            str_replace(base_path().'\\', '', $file->getPathName())
+                        );
                     }
                 }
             }
