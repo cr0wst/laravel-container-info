@@ -13,7 +13,7 @@ class ListCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'provider:list {--sort}';
+    protected $signature = 'provider:list {--include-illuminate} {--sort}';
 
     /**
      * The console command description.
@@ -45,18 +45,13 @@ class ListCommand extends Command
      */
     public function handle(Container $container)
     {
-        $registeredProviders = $this->providerInformation->getRegisteredProviders();
-       
-        $tableRows = [];
-        foreach ($registeredProviders as $provider) {
-            $tableRows[] = ['provider' => get_class($provider)];
-        }
+        $registeredProviders = $this->providerInformation->getProviderList($this->option('include-illuminate'));
 
         if ($this->option('sort')) {
-            asort($tableRows);
+            asort($registeredProviders);
         }
 
-        $headers = ['Providers'];
-        $this->table($headers, $tableRows);
+        $headers = ['Providers', 'Deferred', 'Provides'];
+        $this->table($headers, $registeredProviders);
     }
 }

@@ -19,16 +19,37 @@ class ProviderInformationTest extends TestCase
     }
 
     /**
-     * Test the getRegisteredProviders method
+     * Test the getProviderList method
      */
-    public function testGetRegisteredProviders()
+    public function testGetProviderList()
     {
-
         // The service providers are an array of objects stored on the Application
         $providers = [
-            Mockery::mock('One'),
-            Mockery::mock('Two')
+            $providerOne = Mockery::mock('One'),
+            $providerTwo = Mockery::mock('Two')
         ];
+
+        $expected = [
+            [
+                'class' => get_class($providerOne),
+                'deferred' => 'true',
+                'provides' => '',
+            ],
+            [
+                'class' => get_class($providerTwo),
+                'deferred' => '',
+                'provides' => "foo\nbar",
+            ],
+        ];
+
+        $providerOne->shouldReceive('isDeferred')->once()->andReturn(true)
+                    ->shouldReceive('provides')->once()->andReturn([]);
+
+        $providerTwo->shouldReceive('isDeferred')->once()->andReturn(false)
+                    ->shouldReceive('provides')->once()->andReturn([
+                        'foo',
+                        'bar',
+                    ]);
 
         // This is nasty but we're going to override the application controller's service providers using reflection
         // since there's no reliable way to build the expected results.
@@ -40,7 +61,7 @@ class ProviderInformationTest extends TestCase
 
         $service = new ProviderInformation($application);
 
-        $this->assertEquals($service->getRegisteredProviders(), $providers);
+        $this->assertEquals($expected, $service->getProviderList());
 
     }
 
