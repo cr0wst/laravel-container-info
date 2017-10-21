@@ -34,7 +34,7 @@ class ListCommand extends Command
     public function __construct(BindingInformation $bindingInformation)
     {
         parent::__construct();
-        $this->BindingInformation = $bindingInformation;
+        $this->bindingInformation = $bindingInformation;
     }
 
     /**
@@ -45,7 +45,7 @@ class ListCommand extends Command
      */
     public function handle(Container $container)
     {
-        $foundBindings = $this->BindingInformation->getBindingList($this->option('include-illuminate'));
+        $foundBindings = $this->bindingInformation->getBindingList($this->option('include-illuminate'));
 
         $headers = ['Abstract', 'Concrete'];
         $this->table($headers, $foundBindings);

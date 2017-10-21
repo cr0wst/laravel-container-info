@@ -39,7 +39,7 @@ class BindingInformation
 
         // Use reflection on each of the binding closures to pull the static $concrete and $abstract variables.
         foreach ($bindings as $binding) {
-            $reflection = new ReflectionFunction($binding["concrete"]);
+            $reflection = new ReflectionFunction($binding['concrete']);
 
             $staticVariables = $reflection->getStaticVariables();
 
@@ -47,7 +47,7 @@ class BindingInformation
             // if the boolean is true.
             if (array_has($staticVariables, ['concrete', 'abstract'])
                 && ($includeIlluminate || strpos($staticVariables['abstract'], 'Illuminate\\') === false)) {
-                array_push($foundBindings, array_intersect_key($staticVariables, array_flip(['concrete', 'abstract'])));
+                $foundBindings[] = array_intersect_key($staticVariables, array_flip(['concrete', 'abstract']));
             }
         }
 
@@ -81,10 +81,7 @@ class BindingInformation
                             $bindingsAndLocation[$abstract] = [];
                         }
 
-                        array_push(
-                            $bindingsAndLocation[$abstract],
-                            str_replace(base_path().'\\', '', $file->getPathName())
-                        );
+                        $bindingsAndLocation[$abstract][] = str_replace(base_path().'\\', '', $file->getPathName());
                     }
                 }
             }

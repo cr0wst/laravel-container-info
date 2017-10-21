@@ -35,7 +35,7 @@ class UsageCommand extends Command
     public function __construct(BindingInformation $bindingInformation)
     {
         parent::__construct();
-        $this->BindingInformation = $bindingInformation;
+        $this->bindingInformation = $bindingInformation;
     }
 
     /**
@@ -46,7 +46,7 @@ class UsageCommand extends Command
      */
     public function handle(Container $container)
     {
-        $usageList = $this->BindingInformation->getUsageList($this->option('include-illuminate'));
+        $usageList = $this->bindingInformation->getUsageList($this->option('include-illuminate'));
         if ($this->option('sort')) {
             ksort($usageList);
         }
@@ -55,7 +55,7 @@ class UsageCommand extends Command
         // the array of arrays you feed it.
         $outputArray = [];
         foreach ($usageList as $key => $value) {
-            array_push($outputArray, ['abstract' => $key, 'locations' => implode("\n", $value)]);
+            $outputArray[] = [ 'abstract' => $key, 'locations' => implode("\n", $value)];
         }
 
         // Build the formatted usage list.
