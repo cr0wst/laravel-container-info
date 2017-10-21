@@ -20,7 +20,7 @@ class ListCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Show the bound providers on the IoC container.';
+    protected $description = 'Show the bound providers on the IoC container';
 
     /**
      * @var BindingInformation $bindingInformation

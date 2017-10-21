@@ -20,7 +20,7 @@ class UsageCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Searches the source directory for references to the abstracts that are bound.';
+    protected $description = 'Searches the source directory for references to the abstracts that are bound';
 
     /**
      * @var BindingInformation $bindingInformation
