@@ -5,9 +5,9 @@ namespace Smcrow\BindingUtilities\Tests;
 use Illuminate\Container\Container;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Smcrow\BindingUtilities\Services\BindingService;
+use Smcrow\ContainerInformation\BindingInformation\Services\BindingInformation;
 
-class BindingServiceTest extends TestCase
+class BindingInformationTest extends TestCase
 {
 
     private $containerMock;
@@ -69,7 +69,7 @@ class BindingServiceTest extends TestCase
 
         $this->containerMock->shouldReceive('getBindings')->once()->andReturn($bindings);
 
-        $service = new BindingService($this->containerMock);
+        $service = new BindingInformation($this->containerMock);
 
         $expectedWithIlluminate =
             [

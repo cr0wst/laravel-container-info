@@ -1,11 +1,11 @@
 <?php
 
-namespace Smcrow\BindingUtilities\Commands;
+namespace Smcrow\ContainerInformation\BindingInformation\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Container\Container;
 use ReflectionFunction;
-use Smcrow\BindingUtilities\Services\BindingService;
+use Smcrow\ContainerInformation\BindingInformation\Services\BindingInformation;
 
 class UsageCommand extends Command
 {
@@ -24,19 +24,19 @@ class UsageCommand extends Command
     protected $description = 'Searches the source directory for references to the abstracts that are bound.';
 
     /**
-     * @var BindingService $bindingService
+     * @var BindingInformation $bindingInformation
      */
-    private $bindingService;
+    private $bindingInformation;
 
     /**
      * Create a new command instance.
      *
-     * @param BindingService $bindingService
+     * @param BindingInformation $bindingInformation
      */
-    public function __construct(BindingService $bindingService)
+    public function __construct(BindingInformation $bindingInformation)
     {
         parent::__construct();
-        $this->bindingService = $bindingService;
+        $this->BindingInformation = $bindingInformation;
     }
 
     /**
@@ -47,7 +47,7 @@ class UsageCommand extends Command
      */
     public function handle(Container $container)
     {
-        $usageList = $this->bindingService->getUsageList($this->option('include-illuminate'));
+        $usageList = $this->BindingInformation->getUsageList($this->option('include-illuminate'));
         if ($this->option('sort')) {
             ksort($usageList);
         }

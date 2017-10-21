@@ -1,11 +1,11 @@
 <?php
 
-namespace Smcrow\BindingUtilities\Commands;
+namespace Smcrow\ContainerInformation\BindingInformation\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Container\Container;
 use ReflectionFunction;
-use Smcrow\BindingUtilities\Services\BindingService;
+use Smcrow\ContainerInformation\BindingInformation\Services\BindingInformation;
 
 class ListCommand extends Command
 {
@@ -24,18 +24,18 @@ class ListCommand extends Command
     protected $description = 'Show the bound providers on the IoC container.';
 
     /**
-     * @var BindingService $bindingService
+     * @var BindingInformation $bindingInformation
      */
-    private $bindingService;
+    private $bindingInformation;
 
     /**
      * Create a new command instance.
      *
      */
-    public function __construct(BindingService $bindingService)
+    public function __construct(BindingInformation $bindingInformation)
     {
         parent::__construct();
-        $this->bindingService = $bindingService;
+        $this->BindingInformation = $bindingInformation;
     }
 
     /**
@@ -46,7 +46,7 @@ class ListCommand extends Command
      */
     public function handle(Container $container)
     {
-        $foundBindings = $this->bindingService->getBindingList($this->option('include-illuminate'));
+        $foundBindings = $this->BindingInformation->getBindingList($this->option('include-illuminate'));
 
         $headers = ['Abstract', 'Concrete'];
         $this->table($headers, $foundBindings);
