@@ -1,6 +1,6 @@
 <?php
 
-namespace Smcrow\BindingUtilities\Services;
+namespace Smcrow\ContainerInformation\BindingInformation\Services;
 
 use Illuminate\Container\Container;
 use RecursiveDirectoryIterator;
@@ -11,7 +11,7 @@ use ReflectionFunction;
  * Service for getting binding information from the Container.
  * @package Services
  */
-class BindingService
+class BindingInformation
 {
 
     /**

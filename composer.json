@@ -1,8 +1,8 @@
 {
-  "name": "smcrow/binding-utilities",
-  "description": "Artisan commands for working with bindings and the IoC container.",
+  "name": "smcrow/laravel-container-info",
+  "description": "Artisan commands for getting information about the IoC container.",
   "minimum-stability": "stable",
-  "keywords": ["laravel", "artisan"],
+  "keywords": ["laravel", "artisan", "container"],
   "license": "MIT",
   "authors": [
     {
@@ -18,7 +18,7 @@
   },
   "autoload": {
     "psr-4": {
-      "Smcrow\\BindingUtilities\\": "src/"
+      "Smcrow\\ContainerInformation\\": "src/"
     }
   },
   "require-dev": {
@@ -28,7 +28,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Smcrow\\BindingUtilities\\BindingUtilitiesServiceProvider"
+        "Smcrow\\ContainerInformation\\ContainerInformationServiceProvider"
       ]
     }
   }
