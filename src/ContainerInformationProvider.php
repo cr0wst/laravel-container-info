@@ -4,6 +4,7 @@ namespace Smcrow\ContainerInformation;
 
 use Illuminate\Support\ServiceProvider;
 use Smcrow\ContainerInformation\BindingInformation\BindingInformationProvider;
+use Smcrow\ContainerInformation\ProviderInformation\ProviderInformationProvider;
 
 class ContainerInformationProvider extends ServiceProvider
 {
