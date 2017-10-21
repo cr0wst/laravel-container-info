@@ -4,7 +4,6 @@ namespace Smcrow\ContainerInformation\BindingInformation\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Container\Container;
-use ReflectionFunction;
 use Smcrow\ContainerInformation\BindingInformation\Services\BindingInformation;
 
 class UsageCommand extends Command
