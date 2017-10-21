@@ -6,7 +6,7 @@ use Illuminate\Support\ServiceProvider;
 use Smcrow\ContainerInformation\BindingInformation\Commands\ListCommand;
 use Smcrow\ContainerInformation\BindingInformation\Commands\UsageCommand;
 
-class BindingInformationServiceProvider extends ServiceProvider
+class BindingInformationProvider extends ServiceProvider
 {
 
     /**
