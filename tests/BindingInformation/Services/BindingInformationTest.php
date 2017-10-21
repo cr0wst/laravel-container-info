@@ -30,9 +30,9 @@ class BindingInformationTest extends TestCase
         // If anybody has a decent way of building this array please PR.
         $bindings = [
             ["concrete" =>
-            function () {
-                static $concrete = "Smcrow\TestContracts\Contract1";
-                static $abstract = "Smcrow\TestImplementations\Implementation1";
+                function () {
+                    static $concrete = "Smcrow\TestContracts\Contract1";
+                    static $abstract = "Smcrow\TestImplementations\Implementation1";
                 }
             ],
             ["concrete" =>
@@ -120,7 +120,5 @@ class BindingInformationTest extends TestCase
 
         $this->assertEquals($resultsWithIlluminate, $expectedWithIlluminate);
         $this->assertEquals($resultsWithoutIlluminate, $expectedWithoutIlluminate);
-
     }
-
 }
