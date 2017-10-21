@@ -26,15 +26,14 @@ class BindingInformationProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton('command.smcrow.binding.list', function($app) {
-           return $app[ListCommand::class];
+        $this->app->singleton('command.smcrow.binding.list', function ($app) {
+            return $app[ListCommand::class];
         });
 
-        $this->app->singleton('command.smcrow.binding.usage', function($app) {
+        $this->app->singleton('command.smcrow.binding.usage', function ($app) {
             return $app[UsageCommand::class];
         });
 
         $this->commands('command.smcrow.binding.list', 'command.smcrow.binding.usage');
     }
-
 }
