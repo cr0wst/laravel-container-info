@@ -10,6 +10,9 @@ This is a suite of custom commands for Artisan that gives information about the 
     * `--include-illuminate` - Indicates that Illuminate classes should be included.  They are not included by default.
     * `--sort` - Indicates that the information should be sorted.
 
+## Working with Service Providers
+* `provider:list` - Lists the registered service providers.
+    * `--sort` - Indicates that the information should be sorted.
 # Usage
 ## Install Through Composer
 ```
