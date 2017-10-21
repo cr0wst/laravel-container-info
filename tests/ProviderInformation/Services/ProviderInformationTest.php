@@ -62,7 +62,5 @@ class ProviderInformationTest extends TestCase
         $service = new ProviderInformation($application);
 
         $this->assertEquals($expected, $service->getProviderList());
-
     }
-
 }
