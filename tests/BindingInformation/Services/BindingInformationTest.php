@@ -115,8 +115,8 @@ class BindingInformationTest extends TestCase
                 ]
             ];
 
-        $resultsWithIlluminate = $service->getBindingList();
-        $resultsWithoutIlluminate = $service->getBindingList(false);
+        $resultsWithIlluminate = $service->getBindingList(true);
+        $resultsWithoutIlluminate = $service->getBindingList();
 
         $this->assertEquals($resultsWithIlluminate, $expectedWithIlluminate);
         $this->assertEquals($resultsWithoutIlluminate, $expectedWithoutIlluminate);
