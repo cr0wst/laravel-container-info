@@ -3,7 +3,6 @@
 namespace Smcrow\ContainerInformation\BindingInformation\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Container\Container;
 use Smcrow\ContainerInformation\BindingInformation\Services\BindingInformation;
 
 class UsageCommand extends Command
@@ -13,7 +12,7 @@ class UsageCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'binding:usage {--include-illuminate} {--sort}';
+    protected $signature = 'binding:usage {--include-illuminate} {--include-vendor} {--exclude=} {--sort}';
 
     /**
      * The console command description.
@@ -40,13 +39,16 @@ class UsageCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @param Container $container
-     * @return mixed
      */
-    public function handle(Container $container)
+    public function handle(): void
     {
-        $usageList = $this->bindingInformation->getUsageList($this->option('include-illuminate'));
+        $usageList = $this->bindingInformation
+            ->getUsageList(
+                $this->option('exclude') ?? '',
+                $this->option('include-illuminate'),
+                $this->option('include-vendor')
+            );
+
         if ($this->option('sort')) {
             ksort($usageList);
         }

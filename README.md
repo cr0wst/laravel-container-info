@@ -6,8 +6,10 @@ This is a suite of custom commands for Artisan that gives information about the 
 ## Working with Bindings
 * `binding:list` - Lists the registered bindings by showing the abstract (interface) and concrete class that will be injected.
     * `--include-illuminate` - Indicates that Illuminate classes should be included.  They are not included by default.
-* `binding:usage` - Lists the registered bindings and which files they are referenced in.
+* `binding:usage` - Lists the registered bindings and which files they are referenced in.  By default will exclude `node_modules` and `vendor`.
     * `--include-illuminate` - Indicates that Illuminate classes should be included.  They are not included by default.
+    * `--include-vendor` - Indicates that the vendor directory should be included.  It is not included by default.
+    * `--exclude=` - A comma separated string that indicates which directories to exclude.
     * `--sort` - Indicates that the information should be sorted.
 
 ## Working with Service Providers
