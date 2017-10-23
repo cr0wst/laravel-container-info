@@ -29,7 +29,7 @@ class ProviderInformation
      *
      * @return array containing the registered providers.
      */
-    public function getProviderList($includeIlluminate = true)
+    public function getProviderList($includeIlluminate = false): array
     {
         // Use reflection to get the provider array off of the Application
         // The property we're after is 'serviceProviders' on the Application class.

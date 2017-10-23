@@ -3,7 +3,6 @@
 namespace Smcrow\ContainerInformation\BindingInformation\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Container\Container;
 use Smcrow\ContainerInformation\BindingInformation\Services\BindingInformation;
 
 class ListCommand extends Command
@@ -29,7 +28,7 @@ class ListCommand extends Command
 
     /**
      * Create a new command instance.
-     *
+     * @param BindingInformation $bindingInformation
      */
     public function __construct(BindingInformation $bindingInformation)
     {
@@ -39,11 +38,8 @@ class ListCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @param Container $container
-     * @return mixed
      */
-    public function handle(Container $container)
+    public function handle() : void
     {
         $foundBindings = $this->bindingInformation->getBindingList($this->option('include-illuminate'));
 
