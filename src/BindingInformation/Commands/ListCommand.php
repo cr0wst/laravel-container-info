@@ -39,7 +39,7 @@ class ListCommand extends Command
     /**
      * Execute the console command.
      */
-    public function handle() : void
+    public function handle(): void
     {
         try {
             $foundBindings = $this->bindingInformation->getBindingList($this->option('include-illuminate'));
