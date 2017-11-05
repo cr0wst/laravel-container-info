@@ -3,7 +3,6 @@
 namespace Smcrow\ContainerInformation\BindingInformation\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Container\Container;
 use Smcrow\ContainerInformation\BindingInformation\Services\BindingInformation;
 
 class UsageCommand extends Command
@@ -13,7 +12,7 @@ class UsageCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'binding:usage {--include-illuminate} {--sort}';
+    protected $signature = 'binding:usage {--include-illuminate} {--include-vendor} {--exclude=} {--sort}';
 
     /**
      * The console command description.
@@ -40,26 +39,34 @@ class UsageCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @param Container $container
-     * @return mixed
      */
-    public function handle(Container $container)
+    public function handle(): void
     {
-        $usageList = $this->bindingInformation->getUsageList($this->option('include-illuminate'));
-        if ($this->option('sort')) {
-            ksort($usageList);
-        }
+        try {
+            $usageList = $this->bindingInformation
+                ->getUsageList(
+                    $this->option('exclude') ?? '',
+                    $this->option('include-illuminate'),
+                    $this->option('include-vendor')
+                );
 
-        // There might be a better way to do this using array_map but the table method is pretty picky about
-        // the array of arrays you feed it.
-        $outputArray = [];
-        foreach ($usageList as $key => $value) {
-            $outputArray[] = [ 'abstract' => $key, 'locations' => implode("\n", $value)];
-        }
+            if ($this->option('sort')) {
+                ksort($usageList);
+            }
 
-        // Build the formatted usage list.
-        $headers = ['Abstract', 'Locations'];
-        $this->table($headers, $outputArray);
+            // There might be a better way to do this using array_map but the table method is pretty picky about
+            // the array of arrays you feed it.
+            $outputArray = [];
+            foreach ($usageList as $key => $value) {
+                $outputArray[] = ['abstract' => $key, 'locations' => implode("\n", $value)];
+            }
+
+            // Build the formatted usage list.
+            $headers = ['Abstract', 'Locations'];
+            $this->table($headers, $outputArray);
+        } catch (\ReflectionException $e) {
+            $this->error('Problem retrieving the usage list.');
+            $this->error($e->getMessage());
+        }
     }
 }

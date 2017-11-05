@@ -14,7 +14,7 @@ class BindingInformationProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }
@@ -24,7 +24,7 @@ class BindingInformationProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton('command.smcrow.binding.list', function ($app) {
             return $app[ListCommand::class];

@@ -5,13 +5,11 @@ namespace Smcrow\ContainerInformation\ProviderInformation\Tests;
 use Illuminate\Foundation\Application;
 use Mockery;
 use PHPUnit\Framework\TestCase;
-use Smcrow\ContainerInformation\ProviderInformation\Services\ProviderInformation;
 use ReflectionClass;
+use Smcrow\ContainerInformation\ProviderInformation\Services\ProviderInformation;
 
 class ProviderInformationTest extends TestCase
 {
-
-    private $applicationMock;
 
     public function setUp()
     {

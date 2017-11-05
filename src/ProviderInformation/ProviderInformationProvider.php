@@ -13,7 +13,7 @@ class ProviderInformationProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }
@@ -23,7 +23,7 @@ class ProviderInformationProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->singleton('command.smcrow.provider.list', function ($app) {
             return $app[ListCommand::class];

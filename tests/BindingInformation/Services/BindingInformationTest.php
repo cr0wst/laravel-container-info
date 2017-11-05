@@ -29,40 +29,40 @@ class BindingInformationTest extends TestCase
 
         // If anybody has a decent way of building this array please PR.
         $bindings = [
-            ["concrete" =>
+            ['concrete' =>
                 function () {
-                    static $concrete = "Smcrow\TestContracts\Contract1";
-                    static $abstract = "Smcrow\TestImplementations\Implementation1";
+                    static $concrete = 'Smcrow\TestContracts\Contract1';
+                    static $abstract = 'Smcrow\TestImplementations\Implementation1';
                 }
             ],
-            ["concrete" =>
+            ['concrete' =>
                 function () {
-                    static $concrete = "Smcrow\TestContracts\Contract2";
-                    static $abstract = "Smcrow\TestImplementations\Implementation2";
+                    static $concrete = 'Smcrow\TestContracts\Contract2';
+                    static $abstract = 'Smcrow\TestImplementations\Implementation2';
                 }
             ],
-            ["concrete" =>
+            ['concrete' =>
                 function () {
-                    static $concrete = "Smcrow\TestContracts\Contract3";
-                    static $abstract = "Smcrow\TestImplementations\Implementation3";
+                    static $concrete = 'Smcrow\TestContracts\Contract3';
+                    static $abstract = 'Smcrow\TestImplementations\Implementation3';
                 }
             ],
-            ["concrete" =>
+            ['concrete' =>
                 function () {
-                    static $concrete = "Illuminate\TestContracts\Contract1";
-                    static $abstract = "Illuminate\TestImplementations\Implementation1";
+                    static $concrete = 'Illuminate\TestContracts\Contract1';
+                    static $abstract = 'Illuminate\TestImplementations\Implementation1';
                 }
             ],
-            ["concrete" =>
+            ['concrete' =>
                 function () {
-                    static $concrete = "Illuminate\TestContracts\Contract2";
-                    static $abstract = "Illuminate\TestImplementations\Implementation2";
+                    static $concrete = 'Illuminate\TestContracts\Contract2';
+                    static $abstract = 'Illuminate\TestImplementations\Implementation2';
                 }
             ],
-            ["concrete" =>
+            ['concrete' =>
                 function () {
-                    static $concrete = "Illuminate\TestContracts\Contract3";
-                    static $abstract = "Illuminate\TestImplementations\Implementation3";
+                    static $concrete = 'Illuminate\TestContracts\Contract3';
+                    static $abstract = 'Illuminate\TestImplementations\Implementation3';
                 }
             ]
         ];
@@ -74,49 +74,49 @@ class BindingInformationTest extends TestCase
         $expectedWithIlluminate =
             [
                 [
-                    "concrete" => "Smcrow\TestContracts\Contract1",
-                    "abstract" => "Smcrow\TestImplementations\Implementation1",
+                    'concrete' => 'Smcrow\TestContracts\Contract1',
+                    'abstract' => 'Smcrow\TestImplementations\Implementation1',
                 ],
                 [
-                    "concrete" => "Smcrow\TestContracts\Contract2",
-                    "abstract" => "Smcrow\TestImplementations\Implementation2",
+                    'concrete' => 'Smcrow\TestContracts\Contract2',
+                    'abstract' => 'Smcrow\TestImplementations\Implementation2',
                 ],
                 [
-                    "concrete" => "Smcrow\TestContracts\Contract3",
-                    "abstract" => "Smcrow\TestImplementations\Implementation3",
+                    'concrete' => 'Smcrow\TestContracts\Contract3',
+                    'abstract' => 'Smcrow\TestImplementations\Implementation3',
                 ],
                 [
-                    "concrete" => "Illuminate\TestContracts\Contract1",
-                    "abstract" => "Illuminate\TestImplementations\Implementation1",
+                    'concrete' => 'Illuminate\TestContracts\Contract1',
+                    'abstract' => 'Illuminate\TestImplementations\Implementation1',
                 ],
                 [
-                    "concrete" => "Illuminate\TestContracts\Contract2",
-                    "abstract" => "Illuminate\TestImplementations\Implementation2",
+                    'concrete' => 'Illuminate\TestContracts\Contract2',
+                    'abstract' => 'Illuminate\TestImplementations\Implementation2',
                 ],
                 [
-                    "concrete" => "Illuminate\TestContracts\Contract3",
-                    "abstract" => "Illuminate\TestImplementations\Implementation3",
+                    'concrete' => 'Illuminate\TestContracts\Contract3',
+                    'abstract' => 'Illuminate\TestImplementations\Implementation3',
                 ]
             ];
 
         $expectedWithoutIlluminate =
             [
                 [
-                    "concrete" => "Smcrow\TestContracts\Contract1",
-                    "abstract" => "Smcrow\TestImplementations\Implementation1",
+                    'concrete' => 'Smcrow\TestContracts\Contract1',
+                    'abstract' => 'Smcrow\TestImplementations\Implementation1',
                 ],
                 [
-                    "concrete" => "Smcrow\TestContracts\Contract2",
-                    "abstract" => "Smcrow\TestImplementations\Implementation2",
+                    'concrete' => 'Smcrow\TestContracts\Contract2',
+                    'abstract' => 'Smcrow\TestImplementations\Implementation2',
                 ],
                 [
-                    "concrete" => "Smcrow\TestContracts\Contract3",
-                    "abstract" => "Smcrow\TestImplementations\Implementation3",
+                    'concrete' => 'Smcrow\TestContracts\Contract3',
+                    'abstract' => 'Smcrow\TestImplementations\Implementation3',
                 ]
             ];
 
-        $resultsWithIlluminate = $service->getBindingList();
-        $resultsWithoutIlluminate = $service->getBindingList(false);
+        $resultsWithIlluminate = $service->getBindingList(true);
+        $resultsWithoutIlluminate = $service->getBindingList();
 
         $this->assertEquals($resultsWithIlluminate, $expectedWithIlluminate);
         $this->assertEquals($resultsWithoutIlluminate, $expectedWithoutIlluminate);
