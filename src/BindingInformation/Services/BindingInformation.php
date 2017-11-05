@@ -26,7 +26,9 @@ class BindingInformation
      * Get the list of bindings from the Container.
      *
      * @param bool $includeIlluminate Whether or not to include the Illuminate bindings.
+     *
      * @return array of arrays containing the 'concrete' and 'abstract' classes for each bound pair.
+     * @throws \ReflectionException
      */
     public function getBindingList($includeIlluminate = false): array
     {
@@ -58,7 +60,9 @@ class BindingInformation
      * @param string $userExcludedDirectories User provided directories that should be excluded.
      * @param bool $includeIlluminate Whether or not to include the Illuminate bindings.
      * @param bool $includeVendor Whether or not to include the vendor folder.
+     *
      * @return array of arrays containing the 'abstract' and an array of files which reference it.
+     * @throws \ReflectionException
      */
     public function getUsageList(
         string $userExcludedDirectories,
@@ -104,6 +108,7 @@ class BindingInformation
      *
      * @param bool $includeVendor Whether vendor should be included.
      * @param string $userExcludedDirectories A comma separated string of directories to exclude.
+     *
      * @return array
      */
     private function getExcludedDirectories(bool $includeVendor, string $userExcludedDirectories): array

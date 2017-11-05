@@ -28,6 +28,7 @@ class ProviderInformation
      * @param bool $includeIlluminate Whether or not to include the Illuminate bindings.
      *
      * @return array containing the registered providers.
+     * @throws \ReflectionException
      */
     public function getProviderList($includeIlluminate = false): array
     {
@@ -40,6 +41,7 @@ class ProviderInformation
 
         $foundProviders = [];
 
+        /** @var array $providers */
         /** @var \Illuminate\Support\ServiceProvider $provider */
         foreach ($providers as $provider) {
             $providerClass = get_class($provider);

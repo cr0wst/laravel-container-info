@@ -41,9 +41,14 @@ class ListCommand extends Command
      */
     public function handle() : void
     {
-        $foundBindings = $this->bindingInformation->getBindingList($this->option('include-illuminate'));
+        try {
+            $foundBindings = $this->bindingInformation->getBindingList($this->option('include-illuminate'));
 
-        $headers = ['Abstract', 'Concrete'];
-        $this->table($headers, $foundBindings);
+            $headers = ['Abstract', 'Concrete'];
+            $this->table($headers, $foundBindings);
+        } catch (\ReflectionException $e) {
+            $this->error('Problem retrieving the binding list.');
+            $this->error($e->getMessage());
+        }
     }
 }

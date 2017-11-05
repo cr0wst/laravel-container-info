@@ -42,26 +42,31 @@ class UsageCommand extends Command
      */
     public function handle(): void
     {
-        $usageList = $this->bindingInformation
-            ->getUsageList(
-                $this->option('exclude') ?? '',
-                $this->option('include-illuminate'),
-                $this->option('include-vendor')
-            );
+        try {
+            $usageList = $this->bindingInformation
+                ->getUsageList(
+                    $this->option('exclude') ?? '',
+                    $this->option('include-illuminate'),
+                    $this->option('include-vendor')
+                );
 
-        if ($this->option('sort')) {
-            ksort($usageList);
+            if ($this->option('sort')) {
+                ksort($usageList);
+            }
+
+            // There might be a better way to do this using array_map but the table method is pretty picky about
+            // the array of arrays you feed it.
+            $outputArray = [];
+            foreach ($usageList as $key => $value) {
+                $outputArray[] = ['abstract' => $key, 'locations' => implode("\n", $value)];
+            }
+
+            // Build the formatted usage list.
+            $headers = ['Abstract', 'Locations'];
+            $this->table($headers, $outputArray);
+        } catch (\ReflectionException $e) {
+            $this->error('Problem retrieving the usage list.');
+            $this->error($e->getMessage());
         }
-
-        // There might be a better way to do this using array_map but the table method is pretty picky about
-        // the array of arrays you feed it.
-        $outputArray = [];
-        foreach ($usageList as $key => $value) {
-            $outputArray[] = [ 'abstract' => $key, 'locations' => implode("\n", $value)];
-        }
-
-        // Build the formatted usage list.
-        $headers = ['Abstract', 'Locations'];
-        $this->table($headers, $outputArray);
     }
 }

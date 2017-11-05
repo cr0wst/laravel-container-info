@@ -3,7 +3,6 @@
 namespace Smcrow\ContainerInformation\ProviderInformation\Commands;
 
 use Illuminate\Console\Command;
-use Illuminate\Container\Container;
 use Smcrow\ContainerInformation\ProviderInformation\Services\ProviderInformation;
 
 class ListCommand extends Command
@@ -29,7 +28,7 @@ class ListCommand extends Command
 
     /**
      * Create a new command instance.
-     *
+     * @param ProviderInformation $providerInformation
      */
     public function __construct(ProviderInformation $providerInformation)
     {
@@ -39,19 +38,21 @@ class ListCommand extends Command
 
     /**
      * Execute the console command.
-     *
-     * @param Container $container
-     * @return mixed
      */
-    public function handle(Container $container)
+    public function handle(): void
     {
-        $registeredProviders = $this->providerInformation->getProviderList($this->option('include-illuminate'));
+        try {
+            $registeredProviders = $this->providerInformation->getProviderList($this->option('include-illuminate'));
 
-        if ($this->option('sort')) {
-            asort($registeredProviders);
+            if ($this->option('sort')) {
+                asort($registeredProviders);
+            }
+
+            $headers = ['Providers', 'Deferred', 'Provides'];
+            $this->table($headers, $registeredProviders);
+        } catch (\ReflectionException $e) {
+            $this->error('Problem retrieving the provider list.');
+            $this->error($e->getMessage());
         }
-
-        $headers = ['Providers', 'Deferred', 'Provides'];
-        $this->table($headers, $registeredProviders);
     }
 }

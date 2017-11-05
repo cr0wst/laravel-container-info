@@ -14,7 +14,7 @@ class ContainerInformationProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         //
     }
@@ -24,7 +24,7 @@ class ContainerInformationProvider extends ServiceProvider
      *
      * @return void
      */
-    public function register()
+    public function register(): void
     {
         $this->app->register(BindingInformationProvider::class);
         $this->app->register(ProviderInformationProvider::class);
