@@ -1,6 +1,6 @@
 <?php
 
-namespace Smcrow\ContainerInformation\ProviderInformation\Tests;
+namespace Smcrow\ContainerInformation\Testing\ProviderInformation\Services;
 
 use Illuminate\Foundation\Application;
 use Mockery;
