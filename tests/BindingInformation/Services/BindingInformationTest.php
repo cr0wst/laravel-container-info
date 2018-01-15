@@ -1,11 +1,11 @@
 <?php
 
-namespace Smcrow\ContainerInformation\BindingInformation\Tests;
+namespace Smcrow\ContainerInformation\Testing\BindingInformation\Services;
 
 use Illuminate\Container\Container;
 use Mockery;
-use PHPUnit\Framework\TestCase;
 use Smcrow\ContainerInformation\BindingInformation\Services\BindingInformation;
+use Smcrow\ContainerInformation\Testing\TestCase;
 
 class BindingInformationTest extends TestCase
 {
@@ -67,7 +67,7 @@ class BindingInformationTest extends TestCase
             ]
         ];
 
-        $this->containerMock->shouldReceive('getBindings')->once()->andReturn($bindings);
+        $this->containerMock->shouldReceive('getBindings')->twice()->andReturn($bindings);
 
         $service = new BindingInformation($this->containerMock);
 
